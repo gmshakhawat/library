@@ -1,2 +1,2 @@
 # library
-this is an library project
+This is an library Desktop software using Flutter 
