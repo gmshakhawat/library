@@ -36,9 +36,27 @@ class BookController extends GetxController {
 
   }
 
+  searchBook(String name,{page=0,size=2}) async{
+
+    if(name.isNotEmpty){
+      name="$name";
+    }
+
+   var response=await APIRequest.get("/books/search/$name?page=$page&size=$size&sort=createdAt,desc");
+
+  bookPageableList.value=bookPageableModelFromJson(CommonToJson().getString(response));
+
+   print("Books");
+
+   
+
+
+  }
+
+
 
   
-  getSizedBooks({page=0,size=2}) async{
+  getSizedBooks({page=0,size=2,ur}) async{
 
    var response=await APIRequest.get("/books?page=$page&size=$size&sort=createdAt,desc");
 
@@ -49,6 +67,18 @@ class BookController extends GetxController {
    
 
 
+  }
+
+  clearBookList(){
+    bookPageableList.value=PageableBookModel(
+      content: [],
+      number: 0,
+      size: 0,
+      totalPages: 0,
+
+    );
+    bookPageableList.value.content!.clear();
+    print("______#######_____C L E A R E D_____#######_______");
   }
 
 

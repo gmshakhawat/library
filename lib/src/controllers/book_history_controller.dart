@@ -20,11 +20,15 @@ class BookHistoryController extends GetxController {
   }
 
 
-  getSizedBookHistory({size=10,page=0,suffix=""})async{
+  getSizedBookHistory({ id="",size=2,page=0,suffix=""})async{
 
     //?page=0&size=3&sort=createdAt,desc
 
-       var response=await APIRequest.get("/books/histories$suffix?page=$page&size=$size&sort=updatedAt,desc");
+    if(id.length>0){
+      id="/$id";
+    }
+
+       var response=await APIRequest.get("/books$id/histories$suffix?page=$page&size=$size&sort=updatedAt,desc");
 
    bookHistoryList.value=bookHistoryModelFromJson(CommonToJson().getString(response));
     print("Book Length ->>>>>>>  ${bookHistoryList.value.content?.length??0}");
@@ -41,6 +45,23 @@ class BookHistoryController extends GetxController {
     bookHistoryList.value.content!.clear();
     print("______#######_____C L E A R E D_____#######_______");
   }
+
+
+    getSizedBookHistoryByBookId({ id="",size=10,page=0,suffix=""})async{
+
+    //?page=0&size=3&sort=createdAt,desc
+
+    if(id.length>0){
+      id="/$id";
+    }
+
+       var response=await APIRequest.get("/books/books$id/histories$suffix?page=$page&size=$size&sort=updatedAt,desc");
+
+   bookHistoryList.value=bookHistoryModelFromJson(CommonToJson().getString(response));
+    print("Book Length ->>>>>>>  ${bookHistoryList.value.content?.length??0}");
+  }
+
+
 
 
   getAllHistory() async{

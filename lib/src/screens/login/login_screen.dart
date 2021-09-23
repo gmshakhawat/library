@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                SktInputField(label: "Username",
             textEditingController:_usernameController ,),
               const SizedBox(height: 10,),
-            SktInputField(label: "Search",
+            SktInputField(label: "Password",
             textEditingController:_passwordController ,
             valdationType: ValidationType.PASSWORD,),
               const SizedBox(height: 20,),

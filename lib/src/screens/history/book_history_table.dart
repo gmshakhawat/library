@@ -1,3 +1,4 @@
+import 'package:cant_lib/src/constents/skt_colors.dart';
 import 'package:cant_lib/src/models/book_history_model.dart';
 import 'package:cant_lib/src/widgets/skt_text.dart';
 import 'package:flutter/material.dart';
@@ -6,17 +7,21 @@ class BookHistoryTable extends StatelessWidget {
 
   
  final BookHistoryModel? bookHistoryModel;
-  const BookHistoryTable({ Key? key, this.bookHistoryModel }) : super(key: key);
+ final Color color;
+  const BookHistoryTable({ Key? key, this.bookHistoryModel, this.color=SktColors.background }) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: color,
         child:Column(
           children: [
             Row(
    mainAxisAlignment: MainAxisAlignment.spaceAround,
    children: const [
+
+     
      TableCell(child: Padding( 
                                       padding: EdgeInsets.all(5),
                                       child:SktText(text:"Book Title",textAlign: TextAlign.center,)
